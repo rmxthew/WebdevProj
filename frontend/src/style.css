@@ -1,0 +1,61 @@
+.App {
+    height: 100vh;
+    padding: 20px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    background-color: #f4f4f4; /* Light background color for a clean look */
+}
+
+.shoes {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start; /* Align items to the start */
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    overflow-x: auto; /* Allows horizontal scrolling if the items exceed the container width */
+    margin-bottom: 30px; /* Space between products and the form */
+}
+
+.shoe {
+    flex: 0 0 300px; /* Each product (shoe) takes exactly 300px width */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for product cards */
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shoe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slight lift effect on hover */
+}
+
+img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: aquamarine; /* Background color for images */
+}
+
+
+
+
+button:hover {
+    text-decoration: none;
+    background-color: #0300ae;
+}
+.update a,
+button a {
+    text-decoration: none;
+    color: white;
+}
+
+

@@ -1,0 +1,233 @@
+/* EditProfile.css */
+.editProfileContainer {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0.5rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .editProfileWrapper {
+    width: 100%;
+  }
+  
+  .editProfileCard {
+    width: 100%;
+  }
+  
+  .editProfileHeader {
+    margin-bottom: 1.5rem;
+  }
+  
+  .editProfileHeaderContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    
+  }
+  
+  .pageTitle {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .backButtonEditProfile {
+    padding: 0.75rem 0.75rem; /* Smaller padding */
+    background: linear-gradient(135deg, #000407 0%, #f30000 100%);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem; /* Smaller font size */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 1px; /* Ensure minimum width */
+  }
+  
+  .backButtonEditProfile:hover {
+    background: linear-gradient(135deg, #031f38 0%, #d12a0d 100%);
+  }
+  
+  .backButtonEditProfile:active {
+    transform: translateY(1px);
+  }
+  
+  .contentContainer {
+    width: 100%;
+  }
+  
+  .messageAlert {
+    color: #062208;
+    background-color: #edf7ed;
+    border: 1px solid #c8e6c9;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  .profileGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  
+  .viewSection, .editSection {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+  }
+  
+  .fieldGroup {
+    margin-bottom: 1.25rem;
+  }
+  
+  .fieldLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #444;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  .fieldValue {
+    background-color: #f5f5f5; /* Light gray background for consistency */
+    color: #666; /* Softer text color */
+    padding: 8px 10px; /* Adds padding for a more form-like appearance */
+    border: 1px solid #ddd; /* Light border for structure */
+    border-radius: 4px; /* Rounded corners for better aesthetics */
+    font-size: 1em; /* Keep text size readable */
+    cursor: default; /* Indicate static content */
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  .inputField:focus {
+    outline: none;
+    border-color: #9575CD;
+    box-shadow: 0 0 0 2px rgba(149, 117, 205, 0.1);
+  }
+  
+  .inputField::placeholder {
+    color: #aaa;
+  }
+  
+
+  /* Styles for read-only fields */
+.inputField[readonly] {
+    background-color: #f5f5f5; /* Light gray background */
+    color: #999; /* Duller text color */
+    border: 1px solid #ccc; /* Subtle border */
+    cursor: not-allowed; /* Change cursor to indicate non-editable */
+  }
+  
+  /* Optional: Add a tooltip cursor style */
+  .inputField[readonly]:hover {
+    position: relative;
+  }
+  
+  .inputField[readonly]:hover::after {
+    content: "This field is read-only";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .primaryButton {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #000407 0%, #f30000 100%);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+    margin-top: 1.5rem;
+  }
+  
+  .primaryButton:hover {
+    background: linear-gradient(135deg, #031f38 0%, #d12a0d 100%);
+  }
+  
+  .primaryButton:active {
+    transform: translateY(1px);
+  }
+  
+  .deleteSection {
+    margin-top: 2rem;
+  }
+  
+  .deleteButton {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
+  
+  .deleteButton:active {
+    transform: translateY(1px);
+  }
+  
+  @media (max-width: 768px) {
+    .editProfileContainer {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+  
+    .profileGrid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  
+    .viewSection, .editSection {
+      padding: 1rem;
+    }
+  
+    .editProfileHeaderContent {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }

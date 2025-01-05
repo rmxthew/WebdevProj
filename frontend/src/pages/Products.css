@@ -1,0 +1,203 @@
+:root {
+    --primary: #ED2603; /* Main color */
+    --hover: #FF2802; /* Hover color */
+    --text: #fff; /* Text color */
+    --light: #000000; /* Dark background color */
+    --textbody: #333; /* Body text color */
+    --shadow: rgba(0, 0, 0, 0.1); /* Shadow color */
+   
+    --background: #f0f0f0; /* Background color */
+}
+
+/* Header Section */
+.shoes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light);
+  color: var(--text);
+  padding: 15px 30px;
+  margin-bottom: 20px;
+}
+
+.shoes-title {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.shoes-header-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+
+.shoes-back-btn {
+  background-color: var(--primary);
+  color: var(--text);
+  border: 0;
+  padding: 5px 10px; /* Same padding for consistency */
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem; /* Consistent font size */
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(230, 57, 70, 0.3);
+  flex-shrink: 0; /* Prevent shrinking */
+  height: 40px; /* Set the same height for both buttons */
+  text-align: center; /* Center the text inside the button */
+  display: flex; /* Use flex to center the text */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+.cart-icon-btn{
+  padding: 5px 15px;
+}
+
+
+.shoes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.shoe-item {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px var(--shadow);
+  padding: 20px;
+  text-align: center;
+  
+  border: 2px solid var(--primary);
+}
+
+.shoe-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px var(--shadow);
+}
+
+.shoe-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.shoe-img:hover {
+  transform: scale(1.1);
+}
+
+.shoe-name {
+  font-size: 1.5rem;
+  color: var(--light);
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.shoe-description {
+  color: var(--textbody);
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.shoe-price {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Buttons for Product Actions */
+.add-to-cart-btn,
+.buy-now-btn {
+  background: var(--primary);
+  color: var(--text);
+  border: none;
+  padding: 6px 12px; /* Smaller padding */
+  border-radius: var(--border-radius);
+  font-size: 1rem; /* Smaller font size */
+  margin: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(230, 57, 70, 0.3);
+}
+
+.add-to-cart-btn:hover,
+.buy-now-btn:hover {
+  background-color: var(--hover);
+  transform: translateY(-3px);
+}
+
+/* Cart Section */
+.cart-summary {
+  background: var(--background);
+  border: 1px solid var(--light);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-title {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.cart-items-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.proceed-checkout-btn {
+  background: var(--primary);
+  color: var(--text);
+  border: none;
+  padding: 6px 12px;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.proceed-checkout-btn:hover {
+  background-color: var(--hover);
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .shoes-list {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .shoes-header {
+    padding: 10px;
+  }
+
+  .shoes-title {
+    font-size: 1.5rem;
+  }
+
+
+  .shoes-back-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}

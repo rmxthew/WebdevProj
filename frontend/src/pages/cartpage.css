@@ -1,0 +1,141 @@
+.cart-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .cart-items-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+  }
+  
+  .cart-item-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-item-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    border-radius: 8px;
+  }
+  
+  .cart-item-name {
+    font-size: 20px;
+    margin: 0 0 5px;
+  }
+  
+  .cart-item-price {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .quantity-input {
+    width: 60px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .remove-item-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background: #e74c3c;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .remove-item-btn:hover {
+    background: #c0392b;
+  }
+  
+  .cart-summary {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 8px;
+  }
+  
+  .cart-summary h2 {
+    margin: 0 0 15px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .checkout-btn,
+  .clear-cart-btn,
+  .back-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .checkout-btn {
+    background: #3498db;
+    margin-right: 10px;
+  }
+  
+  .checkout-btn:hover {
+    background: #2980b9;
+  }
+  
+  .clear-cart-btn {
+    background: #f39c12;
+  }
+  
+  .clear-cart-btn:hover {
+    background: #e67e22;
+  }
+  
+  .back-btn {
+    margin-top: 20px;
+    background: #2ecc71;
+  }
+  
+  .back-btn:hover {
+    background: #27ae60;
+  }
+  
+  .empty-cart-message {
+    font-size: 18px;
+    color: #777;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
