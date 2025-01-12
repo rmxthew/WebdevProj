@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './EditProfile.css';  // Ensure your CSS file is correctly imported
+import './EditProfile.css';  
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ const EditProfile = () => {
     const confirmUpdate = window.confirm('Are you sure you want to update your profile information?');
 
     if (!confirmUpdate) {
-    return;  // Exit if the user cancels the update
+    return;  
     }
     
     if (formData.password && !validatePasswords()) {
@@ -195,7 +195,7 @@ const EditProfile = () => {
             )}
 
             <div className="profileGrid">
-              {/* Current Profile Information */}
+             
               <div className="viewSection">
                 <h2 className="pageTitle">Current Information</h2>
                 <div className="fieldGroup">
@@ -221,7 +221,7 @@ const EditProfile = () => {
                 </div>
               </div>
 
-{/* Edit Form */}
+
 <div className="editSection">
   <h2 className="pageTitle">Edit Profile</h2>
   <form onSubmit={handleSubmit}>

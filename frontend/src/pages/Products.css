@@ -1,15 +1,13 @@
 :root {
-    --primary: #ED2603; /* Main color */
-    --hover: #FF2802; /* Hover color */
-    --text: #fff; /* Text color */
-    --light: #000000; /* Dark background color */
-    --textbody: #333; /* Body text color */
-    --shadow: rgba(0, 0, 0, 0.1); /* Shadow color */
-   
-    --background: #f0f0f0; /* Background color */
+    --primary: #ED2603; 
+    --hover: #FF2802; 
+    --text: #fff; 
+    --light: #000000; 
+    --textbody: #333; 
+    --shadow: rgba(0, 0, 0, 0.1); 
+    --background: #f0f0f0; 
 }
 
-/* Header Section */
 .shoes-header {
   display: flex;
   justify-content: space-between;
@@ -25,36 +23,15 @@
   margin: 0;
   font-weight: bold;
   color: var(--primary);
+  text-transform: uppercase
 }
 
 .shoes-header-buttons {
   display: flex;
-  gap: 10px; /* Space between buttons */
-  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; 
+  justify-content: flex-end; 
 }
 
-
-.shoes-back-btn {
-  background-color: var(--primary);
-  color: var(--text);
-  border: 0;
-  padding: 5px 10px; /* Same padding for consistency */
-  cursor: pointer;
-  border-radius: var(--border-radius);
-  font-size: 0.875rem; /* Consistent font size */
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(230, 57, 70, 0.3);
-  flex-shrink: 0; /* Prevent shrinking */
-  height: 40px; /* Set the same height for both buttons */
-  text-align: center; /* Center the text inside the button */
-  display: flex; /* Use flex to center the text */
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  white-space: nowrap; /* Prevent text wrapping */
-}
-.cart-icon-btn{
-  padding: 5px 15px;
-}
 
 
 .shoes-list {
@@ -117,15 +94,14 @@
   margin-bottom: 15px;
 }
 
-/* Buttons for Product Actions */
 .add-to-cart-btn,
 .buy-now-btn {
   background: var(--primary);
   color: var(--text);
   border: none;
-  padding: 6px 12px; /* Smaller padding */
+  padding: 6px 12px; 
   border-radius: var(--border-radius);
-  font-size: 1rem; /* Smaller font size */
+  font-size: 1rem; 
   margin: 5px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
@@ -138,7 +114,6 @@
   transform: translateY(-3px);
 }
 
-/* Cart Section */
 .cart-summary {
   background: var(--background);
   border: 1px solid var(--light);
@@ -180,7 +155,7 @@
   transform: translateY(-3px);
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .shoes-list {
     grid-template-columns: 1fr;

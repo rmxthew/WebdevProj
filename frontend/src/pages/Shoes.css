@@ -32,7 +32,7 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 8px var(--shadow);
-    position: relative; /* Needed for absolute positioning of logout */
+    position: relative; 
 }
 
 .header h1 {
@@ -41,25 +41,35 @@ body {
     color: var(--primary);
 }
 
-.logout {
+.header-buttons {
+    display: flex;
+    gap: 20px; 
+}
+
+
+.header-buttons button {
     background-color: var(--primary);
     color: var(--text);
     border: none;
-    padding: 8px 8px; /* Smaller padding */
-    cursor: pointer;
+    padding: 10px 16px;
     border-radius: var(--border-radius);
-    font-size: 1rem; /* Smaller font size */
+    font-size: 1rem;
+    cursor: pointer;
     box-shadow: 0 2px 4px rgba(230, 57, 70, 0.2);
-    min-width: 80px; /* Set a small fixed width */
-    position: absolute; /* Positioned absolutely */
-    top: 1rem; /* Align to the top */
-    right: 1rem; /* Align to the right */
+    transition: background-color 0.3s ease;
 }
 
-.logout:hover {
+.header-buttons button:hover {
     background-color: var(--hover);
 }
-   
+
+.header-buttons button a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+
 .shoes {
     display: grid;
     grid-template-columns:  repeat(3, 1fr);

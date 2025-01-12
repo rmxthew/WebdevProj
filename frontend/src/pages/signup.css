@@ -57,12 +57,7 @@
   color: #aaa;
 }
 
-.signup-form-group input:focus,
-.signup-form-group textarea:focus {
-  outline: none;
-  border-color: #9575CD;
-  box-shadow: 0 0 0 2px rgba(149, 117, 205, 0.1);
-}
+
 
 .signup-button-container {
   display: flex;
@@ -85,8 +80,6 @@ button {
 button:hover {
   background: linear-gradient(135deg, #031f38 0%, #d12a0d 100%);
 }
-
-
 
 .signup-success-message {
   color: #062208;

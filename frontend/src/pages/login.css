@@ -73,16 +73,6 @@
     transition: all 0.3s ease;
   }
   
-  .login-button {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-  }
-  
-  .login-button:hover {
-    background-color: #357abd;
-  }
-  
   .cancel-button {
     background-color: transparent;
     color: #666;
@@ -102,7 +92,7 @@
   }
   
   .signup-text a {
-    color: #4a90e2;
+    color: #f70606;
     text-decoration: none;
     font-weight: 500;
   }
@@ -111,7 +101,6 @@
     text-decoration: underline;
   }
   
-  /* Responsive styles */
   @media (max-width: 480px) {
     .login-container {
       padding: 1.5rem;
@@ -126,7 +115,7 @@
     }
   }
   
-  /* Accessibility */
+  
   @media (prefers-reduced-motion: reduce) {
     .login-button,
     .cancel-button,

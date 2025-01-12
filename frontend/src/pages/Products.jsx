@@ -9,7 +9,7 @@ const Product = () => {
   const [user, setUser] = useState(null); 
   const navigate = useNavigate();
 
-  // Fetch shoes data from the backend
+ 
   useEffect(() => {
     const fetchAllShoes = async () => {
       try {
@@ -22,57 +22,92 @@ const Product = () => {
     fetchAllShoes();
   }, []);
 
-  // Check user login status
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
         const parsedUser = JSON.parse(storedUser);
-        setUser(parsedUser); // Set the user if parsing succeeds
+        setUser(parsedUser);
       } catch (error) {
         console.error("Error parsing user from localStorage:", error);
-        setUser(null); // Reset if parsing fails
+        setUser(null); 
       }
     } else {
-      setUser(null); // Reset if no user found
+      setUser(null); 
     }
   }, []);
 
-  const isUserLoggedIn = () => user && user.role === "customer";
 
-  const handleAddToCart = (shoe) => {
-    // Check if shoe is already in the cart
+  const isUserLoggedIn = () => {
+    return user && user.id;
+  };
+
+
+  const handleAddToCart = async (shoe) => {
+    if (!isUserLoggedIn()) {
+      alert("Please log in first.");
+      navigate('/login');
+      return;
+    }
+
     const isAlreadyInCart = cart.some((item) => item.id === shoe.id);
     if (isAlreadyInCart) {
       alert("This item is already in your cart.");
       return;
     }
 
-    // Check if the product is available
     if (shoe.quantity > 0) {
-      setCart((prevCart) => [...prevCart, shoe]);
+      try {
+        const userId = user.id; 
+        const response = await axios.post("http://localhost:8800/cart/add", {
+          userID: userId,
+          productID: shoe.id,
+          quantity: 1,
+        });
+
+        if (response.data.success) {
+          setCart((prevCart) => [...prevCart, shoe]);
+          alert("Item added to cart successfully.");
+        } else {
+          alert("Failed to add item to cart.");
+        }
+      } catch (error) {
+        console.error("Error adding item to cart:", error);
+        alert("Could not add item to cart.");
+      }
     } else {
       alert("This product is out of stock.");
     }
   };
 
-  const handleCheckout = () => {
+  const handleMyOrders = () => {
     if (isUserLoggedIn()) {
-      navigate('/checkout', { state: { cart } });
+      navigate('/UserOrders');
     } else {
-      alert("Please log in or sign up to proceed to checkout.");
-      navigate('/login'); // Redirect to login/signup page
+      alert("Please log in to view your orders.");
+      navigate('/login');
     }
   };
 
+
   const handleBuyNow = (shoe) => {
     if (isUserLoggedIn()) {
-      navigate('/checkout', { state: { cart: [shoe] } });
+      navigate('/CheckoutPage', {
+        state: {
+          cart: [
+            {
+              ...shoe,
+              quantity: 1, 
+            },
+          ],
+        },
+      });
     } else {
       alert("Please log in or sign up to buy this product.");
-      navigate('/login'); // Redirect to login/signup page
+      navigate('/login'); 
     }
   };
+
 
   const handleBack = () => {
     if (isUserLoggedIn()) {
@@ -82,8 +117,14 @@ const Product = () => {
     }
   };
 
+
   const goToCartPage = () => {
-    navigate('/cart', { state: { cart } });
+    if (isUserLoggedIn()) {
+      navigate('/cart');
+    } else {
+      alert("Please log in to view your cart.");
+      navigate('/login');
+    }
   };
 
   return (
@@ -91,9 +132,12 @@ const Product = () => {
       <div className="shoes-header">
         <h1 className="shoes-title">Marketplace</h1>
         <div className="shoes-header-buttons">
-          <button className="shoes-back-btn" onClick={handleBack}>Back</button>
+          <button className="back-button-products" onClick={handleBack}>Back</button>
           <button className="cart-icon-btn" onClick={goToCartPage}>
             <i className="fas fa-shopping-cart"></i>
+          </button>
+          <button className="my-orders-btn" onClick={handleMyOrders}>
+            My Orders
           </button>
         </div>
       </div>
@@ -117,22 +161,6 @@ const Product = () => {
           </div>
         ))}
       </div>
-
-      {cart.length > 0 && (
-        <div className="cart-summary">
-          <h2 className="cart-title">Your Cart</h2>
-          <ul className="cart-items-list">
-            {cart.map((item, index) => (
-              <li className="cart-item" key={index}>
-                {item.prod_name} - ₱{item.price}
-              </li>
-            ))}
-          </ul>
-          <button className="proceed-checkout-btn" onClick={handleCheckout}>
-            Proceed to Checkout
-          </button>
-        </div>
-      )}
     </div>
   );
 };

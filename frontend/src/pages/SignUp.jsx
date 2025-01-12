@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import "./signup.css";
 
 const SignUp = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     username: "",
     fullName: "",
@@ -26,43 +26,37 @@ const SignUp = () => {
   };
 
   const validatePasswords = () => {
-    // Minimum length check
+
     if (formData.password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
       return false;
     }
   
-    // Check for uppercase letters
     if (!/[A-Z]/.test(formData.password)) {
       setPasswordError("Password must contain at least one uppercase letter.");
       return false;
     }
   
-    // Check for lowercase letters
     if (!/[a-z]/.test(formData.password)) {
       setPasswordError("Password must contain at least one lowercase letter.");
       return false;
     }
   
-    // Check for numbers
     if (!/\d/.test(formData.password)) {
       setPasswordError("Password must contain at least one number.");
       return false;
     }
   
-    // Check for special characters
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
       setPasswordError("Password must contain at least one special character (!@#$%^&*(),.?\":{}|<>).");
       return false;
     }
   
-    // Check for spaces
     if (/\s/.test(formData.password)) {
       setPasswordError("Password cannot contain spaces.");
       return false;
     }
   
-    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       setPasswordError("Passwords do not match.");
       return false;
@@ -76,7 +70,6 @@ const SignUp = () => {
     setMessage("");
     setPasswordError("");
 
-    // Validate passwords
     if (!validatePasswords()) {
       return;
     }
@@ -91,11 +84,10 @@ const SignUp = () => {
       const response = await axios.post("http://localhost:8800/signup", submitData);
       console.log(response);
       
-      // Show success message and redirect after a short delay
       setMessage("Account successfully created! Redirecting to login...");
       
       setTimeout(() => {
-        navigate("/login"); // Redirect to login page after 2 seconds
+        navigate("/login"); 
       }, 2000);
       
     } catch (error) {

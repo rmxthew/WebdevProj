@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './update.css';
 
 const Update = () => {
   const [shoe, setShoe] = useState({
@@ -19,7 +20,6 @@ const Update = () => {
     const fetchShoe = async () => {
       try {
         const res = await axios.get(`http://localhost:8800/shoes/${id}`);
-        // Since we're returning data[0] from backend, we don't need to access it here
         setShoe({
           prod_name: res.data.prod_name,
           prod_description: res.data.prod_description,
@@ -34,7 +34,7 @@ const Update = () => {
       }
     };
     fetchShoe();
-}, [id]);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -71,12 +71,12 @@ const Update = () => {
     const formData = new FormData();
     formData.append('prod_name', shoe.prod_name);
     formData.append('prod_description', shoe.prod_description);
-    formData.append('price', parseFloat(shoe.price)); 
-    formData.append('quantity', parseInt(shoe.quantity)); 
+    formData.append('price', parseFloat(shoe.price));
+    formData.append('quantity', parseInt(shoe.quantity));
     if (shoe.image instanceof File) {
       formData.append('image', shoe.image);
     } else {
-      formData.append('image', currentImage); // Send the existing image path
+      formData.append('image', currentImage);
     }
 
     try {
@@ -86,7 +86,7 @@ const Update = () => {
         },
       });
 
-      if (response.data === "Successfully updated") {
+      if (response.data === 'Successfully updated') {
         alert('Product updated successfully!');
         navigate('/shoes');
       } else {
@@ -97,60 +97,76 @@ const Update = () => {
     }
   };
 
+
+  const handleBack = () => {
+    navigate('/shoes');
+  };
+
   return (
-    <div className="form">
-      <h1>Update Item</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={shoe.prod_name || ''}
-          onChange={handleChange}
-          name="prod_name"
-        />
-        <input
-          type="text"
-          placeholder="Product Description"
-          value={shoe.prod_description || ''}
-          onChange={handleChange}
-          name="prod_description"
-        />
-        {currentImage && (
-          <div className="current-image">
-            <p>Current Image:</p>
-            <img 
-              src={`http://localhost:8800${currentImage}`} 
-              alt="Current product" 
-              style={{ maxWidth: '200px', marginBottom: '10px' }}
-            />
+    <div className="update-item-page">
+     
+      <nav className="update-item-navbar">
+        <h1>Update Item</h1>
+      </nav>
+
+    
+      <div className="update-item-form">
+        <form onSubmit={handleSubmit}>
+        <label>Product Name:</label>
+          <input
+            type="text"
+            placeholder="Product Name"
+            value={shoe.prod_name || ''}
+            onChange={handleChange}
+            name="prod_name"
+          />
+          <label>Product Description:</label>
+          <textarea
+            placeholder="Product Description"
+            value={shoe.prod_description || ''}
+            onChange={handleChange}
+            name="prod_description"
+          />
+          {currentImage && (
+            <div className="current-image">
+              <p>Current Image:</p>
+              <img src={`http://localhost:8800${currentImage}`} alt="Current product" />
+            </div>
+          )}
+          <label>Upload New Image (optional):</label>
+          <input
+            type="file"
+            onChange={handleChange}
+            name="image"
+            accept="image/*"
+          />
+          <label>Product Price:</label>
+          <input
+            type="number"
+            placeholder="Price"
+            value={shoe.price || ''}
+            onChange={handleChange}
+            name="price"
+            min="0"
+            step="0.01"
+          />
+          <label>Product Quantity:</label>
+          <input
+            type="number"
+            placeholder="Quantity"
+            value={shoe.quantity || ''}
+            onChange={handleChange}
+            name="quantity"
+            min="0"
+          />
+          <div className="button-group">
+            <button type="button" className="back-button" onClick={handleBack}>
+              Back
+            </button>
+            <button type="submit">Update</button>
           </div>
-        )}
-        <label>Upload New Image (optional):</label>
-        <input
-          type="file"
-          onChange={handleChange}
-          name="image"
-          accept="image/*"
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={shoe.price || ''}
-          onChange={handleChange}
-          name="price"
-          min="0"
-          step="0.01"
-        />
-        <input
-          type="number"
-          placeholder="Quantity"
-          value={shoe.quantity || ''}
-          onChange={handleChange}
-          name="quantity"
-          min="0"
-        />
-        <button type="submit">Update</button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

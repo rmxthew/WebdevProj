@@ -11,7 +11,7 @@ import img6 from './images/topsel_img3.jpg';
 
 const LandingPage2 = () => {
   const [username, setUsername] = useState(null);
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -23,9 +23,11 @@ const LandingPage2 = () => {
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
-      localStorage.removeItem('user'); // Remove the entire user object from localStorage
-      setUsername(null); // Reset any user-related state (if necessary)
-      navigate("/"); // Redirect to the homepage
+      localStorage.removeItem('user');
+      localStorage.removeItem('username');
+      localStorage.removeItem('role'); 
+      setUsername(null); 
+      navigate("/"); 
     }
   };
   
@@ -53,6 +55,14 @@ const LandingPage2 = () => {
         image: img3
       }
     ];
+
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+        }, 3000); 
+    
+        return () => clearInterval(interval);
+      }, [slides.length]);
 
     const nextSlide = () => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
@@ -153,22 +163,22 @@ const LandingPage2 = () => {
           <li><Link to="/Products">Shop</Link></li>
         </ul>
         <div className="Username-Logout">
-        {username ? (
-        <>
-      <div className="welcome-message">
-        <span>Welcome, {username}</span>
-      </div>
-      <div className="user-actions">
-        <Link to="/EditProfile" className="edit-profile-link">Edit Profile</Link>
-        <button className="logout-buttonLandingpage" onClick={handleLogout}>Log Out</button>
-      </div>
-        </>
-         ) : (
-        <div className="login-landingpage">
-      <Link to="/login" className="log-in">Log In / Sign Up</Link>
-      </div>
-         )}
-        </div>
+            {username ? (
+              <div className="dropdown">
+                <div className="welcome-message">
+                  Welcome, {username}
+                </div>
+                <div className="dropdown-content">
+                  <Link to="/EditProfile" className="edit-profile-link">Edit Profile</Link>
+                  <button className="logout-buttonLandingpage" onClick={handleLogout}>Log Out</button>
+                </div>
+              </div>
+            ) : (
+              <div className="login-landingpage">
+                <Link to="/login" className="log-in">Log In / Sign Up</Link>
+              </div>
+            )}
+          </div>
       </nav>
 
       <HeroSlider />

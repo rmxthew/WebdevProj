@@ -22,17 +22,15 @@ const LoginPage = () => {
       if (response.data.message === 'Login successful') {
         
         setMessage('Login successful!');
-        // Store user data
         localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('username', response.data.user.username);
         localStorage.setItem('role', response.data.user.role);
-        // Show success message briefly before redirecting to the landing page
         setTimeout(() => {
-          const role = response.data.user.role; // Get role from the response
+          const role = response.data.user.role; 
           if (role === 'admin') {
-            navigate('/shoes'); // Redirect to admin dashboard
+            navigate('/shoes'); 
           } else {
-            navigate('/LandingPage2'); // Redirect to customer dashboard
+            navigate('/LandingPage2'); 
           }
         }, 1000);
       }

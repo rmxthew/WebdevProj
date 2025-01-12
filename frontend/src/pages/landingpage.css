@@ -20,14 +20,13 @@
   
   body {
     background: #f5f5f5;
-   
   }
   
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 5%;
+    padding: 1rem 5%;
     background: var(--light);
     box-shadow: 0 2px 15px var(--shadow);
     position: fixed;
@@ -73,60 +72,93 @@
     display: flex;
     gap: 2rem;
     list-style: none;
-    
-    
   }
   
   .Username-Logout {
     display: flex;
-    align-items: center; /* Aligns items vertically */
+    align-items: center; 
     flex-direction: column;
     
   }
-  
-  .edit-profile-link {
-    padding: 8px 16px; /* Same padding as the logout button */
-    background: linear-gradient(135deg, #000407 0%, #f30000 100%);
-    color: white; /* Text color */
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    text-decoration: none; /* Remove underline */
-    margin-right: 10px; 
-   
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
   }
-  
-  .edit-profile-link:hover {
+
+  .dropdown-content {
+    color: #ddd;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    padding: 10px;
+
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a,
+  .dropdown-content button {
+    color: #ffffff;
+    padding: 10px 16px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
     background: linear-gradient(135deg, #031f38 0%, #d12a0d 100%);
-   
-    
+    border: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 5px;
   }
-  .edit-profile-link:active {
-    transform: translateY(1px);
-   
+
+  .edit-profile-link {
+    display: block;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-radius: 6px;
+    width: 100%;
+    text-align: left;
   }
 
   .logout-buttonLandingpage {
-    padding: 8px 18px; /* Adjust the padding for the button */
-    background-color: #f44336; /* Example background color */
-    color: white; /* Text color */
+    color: #fff;
+    background-color: #ed2603;
+    padding: 12px 16px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
-    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
   }
-  
+
   .logout-buttonLandingpage:hover {
-    background-color: #e53935; /* Hover effect */
+    background-color: #c71f02;
   }
-  
-  .welcome-message {
-    margin-bottom: 1px; /* Adds space between welcome text and action buttons */
-    font-size: 1.1rem; /* Optional: Adjusts font size */
-  }
+
+
+  .welcome-message:hover {
+    color: #ed2603;
+}
+
+.welcome-message {
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem; 
+}
   
 
   
-  .nav-links a {
+.nav-links a {
     text-decoration: none;
     color: var(--text);
     font-size: 1.1rem;
@@ -134,9 +166,9 @@
     position: relative;
     padding: 0.5rem 0;
     transition: all 0.3s ease;
-  }
+}
   
-  .nav-links a::after {
+.nav-links a::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -146,19 +178,19 @@
     height: 2px;
     background: var(--primary);
     transition: width 0.3s ease;
-  }
+}
   
-  .nav-links a:hover {
+.nav-links a:hover {
     color: var(--primary);
-  }
+}
   
-  .nav-links a:hover::after {
+.nav-links a:hover::after {
     width: 100%;
-  }
+}
   
   
 
-  .login-landingpage {
+.login-landingpage {
     display: flex;
     justify-content: flex-end; 
     padding: 1rem; 
@@ -194,10 +226,6 @@
     width: 100%;
 }
 
-
-
- 
-  
   .menu-toggle {
     display: none;
     background: none;
@@ -208,15 +236,11 @@
     transition: all 0.3s ease;
   }
   
-
   
   .menu-toggle:hover {
     color: var(--primary);
     transform: scale(1.1);
   }
-  
-  
-
   
 
   @keyframes fadeIn {
@@ -242,10 +266,7 @@
     }
   }
   
-  
- 
-  
-  
+
   
   @media (max-width: 768px) {
     .menu-toggle {
@@ -287,8 +308,7 @@
       gap: 1rem;
     }
   }
-  
-  
+
 
   
   .hero-slider {
@@ -328,10 +348,7 @@
   }
   
   
-  
 
-  
-  
   
   .brand-name {
     font-size: 2rem;
@@ -399,20 +416,7 @@
     width: 2rem;
   }
 
-  .Username-Logout {
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    padding: 10px 20px; /* Some padding for spacing */
-    text-align: center; /* Center align the content */
-    font-size: 16px; /* Set the font size */
-    border-radius: 5px; /* Optional: adds rounded corners */
-    margin-top: 10px; /* Space above the div */
-  }
-  
 
-  
-
-  
   button.prev,
 button.next {
   position: absolute;
@@ -438,7 +442,6 @@ button.next {
 button.prev:hover, button.next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-
 
   @media (max-width: 768px) {
   
@@ -508,11 +511,7 @@ button.prev:hover, button.next:hover {
     }
   }
   
-  
 
-  
-  
-  
   
   .topselect-section {
     padding: 7rem 2rem;
@@ -548,10 +547,7 @@ button.prev:hover, button.next:hover {
     text-align: center;
     width: 300px;
   }
-  
 
-  
-  
   
   
   .image-wrapper {

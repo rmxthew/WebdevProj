@@ -4,6 +4,7 @@ import {
   Route,
 
 } from "react-router-dom"
+import { useEffect } from "react";
 import Shoes from "./pages/Shoes";
 import Add from "./pages/Add";
 import Landingpage from "./pages/Landingpage";
@@ -15,13 +16,20 @@ import LoginPage from "./pages/LoginPage";
 import Products from "./pages/Products";
 import CheckoutPage from "./pages/CheckoutPage";
 import Cart from "./pages/Cart";
-
-
+import UserOrders from"./pages/UserOrders";
+import PendingOrders from"./pages/PendingOrders";
+import ViewUsers from"./pages/viewusers";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 
 function App() {
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -32,6 +40,9 @@ function App() {
         <Route path = "/Products" element={<Products/>}></Route>
         <Route path = "/Cart" element={<Cart/>}></Route>
         <Route path = "/checkoutpage" element={<CheckoutPage/>}></Route>
+        <Route path = "/UserOrders" element={<UserOrders/>}></Route>
+        <Route path = "/PendingOrders" element={<PendingOrders/>}></Route>
+        <Route path = "/viewusers" element={<ViewUsers/>}></Route>
         <Route path="/login" element={<LoginPage/>} />
         <Route path = "/signup" element={<SignUp/>}></Route>
         <Route path = "/shoes" element={<Shoes/>}></Route>

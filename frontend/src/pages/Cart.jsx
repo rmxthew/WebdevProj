@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./cartpage.css";
@@ -8,12 +8,27 @@ const Cart = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    setCart(storedCart ? JSON.parse(storedCart) : []);
-  }, []); // Only fetch cart from localStorage when component mounts
-  
+ 
+  const userID = useMemo(() => {
+    return location.state?.userID || JSON.parse(localStorage.getItem('user'))?.id;
+  }, [location.state]);
 
+  useEffect(() => {
+    const fetchCart = async () => {
+      if (!userID) return;
+
+      try {
+        const response = await axios.get(`http://localhost:8800/cart/${userID}`);
+        setCart(response.data);
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+    };
+
+    fetchCart();
+  }, [userID]);
+
+ 
   const handleQuantityChange = async (index, newQuantity) => {
     if (newQuantity < 1) {
       alert("Quantity must be at least 1.");
@@ -32,9 +47,9 @@ const Cart = () => {
       }
 
       await axios.put("http://localhost:8800/cart/update", {
-        userID: location.state.userID,
+        userID,
         productID: item.productID,
-        quantity: newQuantity
+        quantity: newQuantity,
       });
 
       const updatedCart = cart.map((cartItem, i) =>
@@ -49,31 +64,65 @@ const Cart = () => {
 
   const handleRemoveItem = async (index) => {
     const item = cart[index];
-
+    const userID = location.state?.userID || JSON.parse(localStorage.getItem('user'))?.id;
+  
     try {
-      await axios.delete("http://localhost:8800/cart/remove", {
-        data: { userID: location.state.userID, productID: item.productID }
-      });
-
-      const updatedCart = cart.filter((_, i) => i !== index);
-      setCart(updatedCart);
+      
+      console.log("Removing item with userID:", userID, "and productID:", item.productID);
+  
+      
+      const response = await axios.delete(`http://localhost:8800/cart/remove/${userID}/${item.productID}`);
+  
+      if (response.data.success) {
+        
+        const updatedCart = cart.filter((_, i) => i !== index);
+        setCart(updatedCart);
+  
+        alert("Item removed from cart successfully.");
+      } else {
+        alert(response.data.message || "Failed to remove item from cart.");
+      }
     } catch (error) {
       console.error("Error removing item:", error);
       alert("Could not remove item from cart.");
     }
   };
+  
 
-  const handleClearCart = () => {
-    setCart([]);
-    // Optionally, you can clear the cart from the database here.
+  const handleClearCart = async () => {
+    try {
+      const userID = location.state?.userID || JSON.parse(localStorage.getItem('user'))?.id;
+  
+      if (!userID) {
+        alert("User not found.");
+        return;
+      }
+  
+      console.log("Clearing cart for userID:", userID);
+  
+
+      const response = await axios.delete(`http://localhost:8800/cart/clear/${userID}`);
+  
+      if (response.data.success) {
+        setCart([]);
+        alert("Cart cleared successfully.");
+      } else {
+        alert("Failed to clear the cart.");
+      }
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+      alert("Could not remove item from cart.");
+    }
   };
-
+  
+  
+  
   const handleCheckout = () => {
     if (cart.length === 0) {
       alert("Your cart is empty!");
       return;
     }
-    navigate("/checkout", { state: { cart } });
+    navigate("/checkoutpage", { state: { cart } });
   };
 
   const totalPrice = cart.reduce(
@@ -83,7 +132,7 @@ const Cart = () => {
 
   return (
     <div className="cart-container">
-      <h1 className="cart-title">Your Cart</h1>
+      <h1 className="cart-title"> Shopping Cart</h1>
       {cart.length > 0 ? (
         <div>
           <ul className="cart-items-list">

@@ -1,33 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './checkoutpage.css';
 
 const Checkout = () => {
-  const { state } = useLocation(); // Get the cart items passed from previous page
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('credit-card');
+  const { state } = useLocation();
   const navigate = useNavigate();
 
-  // Update quantity in database
-  const updateProductQuantity = async (productId) => {
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery');
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (!user) {
+          alert('You must be logged in to proceed to checkout.');
+          navigate('/login');
+          return;
+        }
+
+        const response = await axios.get(`http://localhost:8800/users/${user.id}`);
+        setName(response.data.full_name || '');
+        setAddress(response.data.address || '');
+        setPhoneNumber(response.data.phone_number || '');
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+        alert('Something went wrong. Please try again.');
+      }
+    };
+
+    fetchUserInfo();
+  }, [navigate]);
+
+  const handlePlaceOrder = async () => {
+    if (!name || !address || !phoneNumber) {
+      alert('Please fill in your shipping information.');
+      return;
+    }
+
     try {
-      const response = await axios.put(`http://localhost:8800/update-quantity/${productId}`);
-      console.log(response.data); // Product quantity updated successfully
+      const userID = JSON.parse(localStorage.getItem('user'))?.id;
+      const items = state.cart;
+      const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+      const orderData = {
+        userID,
+        items,
+        totalAmount,
+        shippingAddress: address,
+        fullName: name,
+        phoneNumber,
+        paymentMethod, 
+      };
+
+      const response = await axios.post('http://localhost:8800/orders', orderData);
+
+      if (response.data.success) {
+        alert('Order placed successfully! Redirecting to Orders.');
+
+        await axios.delete(`http://localhost:8800/cart/clear/${userID}`);
+
+        setTimeout(() => {
+          navigate('/UserOrders');
+        }, 3000);
+      }
     } catch (error) {
-      console.error('Error updating product quantity:', error);
+      console.error('Error placing order:', error);
+      alert('Failed to place order. Please try again.');
     }
   };
 
-  const handlePlaceOrder = async () => {
-    // Update quantity for each product in the cart
-    for (let item of state.cart) {
-      await updateProductQuantity(item.id); // Call the function to update the quantity in the database
-    }
-
-    alert('Order placed successfully!');
-    navigate('/order-confirmation'); // Navigate to an order confirmation page
+  const handleBackToCart = () => {
+    navigate('/cart');
   };
 
   return (
@@ -39,13 +87,17 @@ const Checkout = () => {
         <ul>
           {state.cart.map((item, index) => (
             <li key={index} className="cart-item">
-              <span>{item.prod_name} - ${item.price}</span>
+              <span>
+                {item.prod_name} - ₱{item.price} x {item.quantity}
+              </span>
             </li>
           ))}
         </ul>
         <div className="total">
           <span>Total: </span>
-          <span>${state.cart.reduce((total, item) => total + item.price, 0)}</span>
+          <span>
+            ₱{state.cart.reduce((total, item) => total + item.price * item.quantity, 0)}
+          </span>
         </div>
       </div>
 
@@ -72,21 +124,40 @@ const Checkout = () => {
             ></textarea>
           </div>
           <div className="input-group">
-            <label>Payment Method</label>
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="paymentMethod">Payment Method</label>
             <select
+              id="paymentMethod"
               value={paymentMethod}
               onChange={(e) => setPaymentMethod(e.target.value)}
             >
-              <option value="credit-card">Credit Card</option>
-              <option value="paypal">PayPal</option>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="PayPal">PayPal</option>
+              <option value="Gcash">GCash</option>
+              <option value="Maya">Maya</option>
             </select>
           </div>
         </form>
       </div>
 
-      <button className="place-order-btn" onClick={handlePlaceOrder}>
-        Place Order
-      </button>
+      <div className="buttons-container">
+        <button className="back-butn" onClick={handleBackToCart}>
+          Back to Cart
+        </button>
+        <button className="place-order-btn" onClick={handlePlaceOrder}>
+          Place Order
+        </button>
+      </div>
     </div>
   );
 };

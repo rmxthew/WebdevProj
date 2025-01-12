@@ -34,6 +34,14 @@ const HeroSlider = () => {
     }
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 3000); 
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
   };
@@ -103,7 +111,6 @@ const Footer = () => (
   </footer>
 );
 
-// Main Component
 
 const LandingPage = () => {
   useEffect(() => {

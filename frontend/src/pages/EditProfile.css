@@ -1,4 +1,4 @@
-/* EditProfile.css */
+
 .editProfileContainer {
     width: 100%;
     max-width: 1000px;
@@ -36,16 +36,16 @@
   }
   
   .backButtonEditProfile {
-    padding: 0.75rem 0.75rem; /* Smaller padding */
+    padding: 0.75rem 0.75rem; 
     background: linear-gradient(135deg, #000407 0%, #f30000 100%);
     color: white;
     border: none;
     border-radius: 3px;
-    font-size: 1rem; /* Smaller font size */
+    font-size: 1rem; 
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-width: 1px; /* Ensure minimum width */
+    min-width: 1px;
   }
   
   .backButtonEditProfile:hover {
@@ -98,13 +98,13 @@
   }
   
   .fieldValue {
-    background-color: #f5f5f5; /* Light gray background for consistency */
-    color: #666; /* Softer text color */
-    padding: 8px 10px; /* Adds padding for a more form-like appearance */
-    border: 1px solid #ddd; /* Light border for structure */
-    border-radius: 4px; /* Rounded corners for better aesthetics */
-    font-size: 1em; /* Keep text size readable */
-    cursor: default; /* Indicate static content */
+    background-color: #f5f5f5; 
+    color: #666; 
+    padding: 8px 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    font-size: 1em; 
+    cursor: default; 
   }
   
   .inputField {
@@ -130,15 +130,14 @@
   }
   
 
-  /* Styles for read-only fields */
+
 .inputField[readonly] {
-    background-color: #f5f5f5; /* Light gray background */
-    color: #999; /* Duller text color */
-    border: 1px solid #ccc; /* Subtle border */
-    cursor: not-allowed; /* Change cursor to indicate non-editable */
+    background-color: #f5f5f5; 
+    color: #999; 
+    border: 1px solid #ccc; 
+    cursor: not-allowed; 
   }
   
-  /* Optional: Add a tooltip cursor style */
   .inputField[readonly]:hover {
     position: relative;
   }

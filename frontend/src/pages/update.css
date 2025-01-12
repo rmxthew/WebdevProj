@@ -1,0 +1,142 @@
+
+.update-item-page {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .update-item-navbar {
+    display: flex;
+    padding: 15px;
+    background-color: #000;
+    color: #e63946;
+  }
+  
+  .update-item-navbar h1 {
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  
+  
+  .update-item-form {
+   
+    display: flex;
+    max-width: 800px;
+    padding: 1rem;
+    margin-top: 100px;
+    background: linear-gradient(135deg, #ed2603, #000000);
+    border-radius: 10px;
+    display: flex;
+    margin-left: 300px;
+    
+  }
+  
+  
+  .update-item-form label {
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  
+  .update-item-form input,
+  .update-item-form textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: #333;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  
+  .update-item-form textarea {
+    height: 100px;
+    resize: vertical; 
+    border-radius: 8px;
+  }
+  
+ 
+  .update-item-form input:focus,
+  .update-item-form textarea:focus {
+    border-color: #ed2603;
+    outline: none;
+    box-shadow: 0 0 10px rgba(237, 38, 3, 0.4);
+  }
+  
+  .update-item-form input[type="file"] {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    cursor: pointer;
+    background: #ffffff;
+    transition: all 0.3s ease;
+  }
+  
+
+  .current-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .current-image img {
+    max-width: 70%;
+    height: auto;
+  }
+  
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  
+  .update-item-form button {
+    background: #ed2603;
+    color: #ffffff;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+
+    text-transform: uppercase;
+    width: 100%;
+  }
+  
+  .update-item-form button:hover {
+    background: #c71f02;
+    transform: scale(1.03);
+  }
+  
+ 
+  
+  @media (max-width: 768px) {
+    .update-item-form {
+      width: 100%;
+      padding: 2rem;
+    }
+  
+    .update-item-navbar h1 {
+      font-size: 2.5rem;
+    }
+  
+    .update-item-form input,
+    .update-item-form textarea {
+      font-size: 1rem;
+    }
+  
+    .update-item-form button {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+  }
+  
